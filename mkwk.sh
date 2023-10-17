@@ -3,7 +3,7 @@
 # This scripts creates the required actions files for Github Actions
 #
 
-DOCKERHUB_USER=${DOCKERHUB_USER}
+DOCKERHUB_USER=${REGISTRY_USER}
 
 
 # List all directories
@@ -34,7 +34,7 @@ for (( i=0; i<${#directories[@]}; i++ )); do
 
   echo "INFO: Creates: $dest"
   cat > $dest <<EOF
-name: $DOCKERHUB_USER/${directories[$i]}
+name: ${DOCKERHUB_USER}${directories[$i]}
 
 on:
   schedule:

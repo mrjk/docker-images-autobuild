@@ -1,4 +1,4 @@
-name: /ci-prefect-devops
+name: mrjk78/ci-prefect-devops
 
 on:
   schedule:
