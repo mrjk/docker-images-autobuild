@@ -45,6 +45,13 @@ Well, I can write some "magic scripts" to be lazy; but this will cause the produ
 Now, Earthly has solved this problem; I unified the specific language version、the operating system at compile time、the basic runtime environment、and some general fixes. Also use GitHub Action for reliable cross-compilation to generate multi-arch images. It all got better 🤪.
 
 
+## Quick start
+
+Ensure `earthly` is installed:
+```
+sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly && /usr/local/bin/earthly bootstrap --with-autocomplete'
+```
+
 ## Directory Structure
 
 ```sh

@@ -1,0 +1,41 @@
+VERSION 0.7
+
+build:
+    DO ../.udcs/image+DEBIAN_SLIM_12
+    DO ../.udcs/os/debian+SYS_LOCALE
+    DO ../.udcs/os/debian+SYS_UPGRADE
+    DO ../.udcs/os/debian+SYS_TIMEZONE
+    DO ../.udcs/os/debian+SYS_PKG
+    DO ../.udcs/os/debian+PKG_CI_BASE
+    DO ../.udcs/os/debian+PKG_USER_UTILS
+
+    DO ../.udcs/os/debian+LANG_PYTHON
+#    DO ../.udcs/os/debian+LANG_PYTHON_BUILD
+    DO ../.udcs+LABEL
+
+    DO ../.udcs/tools+INSTALL_TERRAFORM
+    DO ../.udcs/tools+INSTALL_TERRAGRUNT
+    DO ../.udcs/tools+INSTALL_DIRENV
+    #DO ../.udcs/tools+INSTALL_MANI
+    DO ../.udcs/tools+INSTALL_TASKFILE
+    DO ../.udcs/tools+INSTALL_GH_CLI
+
+
+
+    #ENV AGENT_PATH /opt/atlassian-agent.jar
+
+    #COPY ./atlassian-agent.jar ${AGENT_PATH}
+    #COPY ./hijack.sh /hijack.sh
+
+    #RUN chown ${RUN_USER}:${RUN_GROUP} ${AGENT_PATH}
+
+    #CMD ["/hijack.sh"]
+
+# docker push registry.paas.beta.jeznet.org/debian-custom
+  
+
+    SAVE IMAGE --push registry.paas.beta.jeznet.org/mrjk-hometools:latest
+    #SAVE IMAGE --push mrjk-ci-system:latest
+
+all:
+    BUILD --platform=linux/amd64 +build

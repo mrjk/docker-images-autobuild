@@ -1,0 +1,59 @@
+VERSION 0.7
+
+INSTALL_TERRAFORM:
+    COMMAND
+    ENV TF_VERSION=1.5.7
+    RUN curl -S -L -O \
+      https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip \
+      && ls -la \
+      && unzip terraform_${TF_VERSION}_linux_amd64.zip \
+      && mv terraform /usr/bin/terraform \
+      && chmod +x /usr/bin/terraform
+
+
+INSTALL_TERRAGRUNT:
+    COMMAND
+    ENV TG_VERSION=v0.50.17
+    RUN curl -sS -L \
+      https://github.com/gruntwork-io/terragrunt/releases/download/${TG_VERSION}/terragrunt_linux_amd64 \
+      -o /usr/bin/terragrunt \
+      && chmod +x /usr/bin/terragrunt
+
+INSTALL_EARTHLY:
+    COMMAND
+    ENV EARTHLY_VERSION=v0.50.17
+    RUN /bin/sh -c 'wget https://github.com/earthly/earthly/releases/latest/download/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly && /usr/local/bin/earthly bootstrap --with-autocomplete'
+
+INSTALL_DIRENV:
+    COMMAND
+    RUN curl -sfL https://direnv.net/install.sh | bash
+
+
+
+INSTALL_MANI:
+    COMMAND
+    ENV MANI_VERSION=latest
+    RUN curl -sfL https://raw.githubusercontent.com/alajmo/mani/main/install.sh | sh
+
+
+INSTALL_TASKFILE:
+    COMMAND
+    # See: https://github.com/go-task/task/releases
+    ENV TASKFILE_VERSION=v3.30.1
+    RUN sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d $TASKFILE_VERSION
+
+INSTALL_MINIO:
+    COMMAND
+    ENV MINIO_VERSION=latest
+    RUN \
+      curl https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /usr/local/bin/mc && \
+      chmod +x /usr/local/bin/mc
+
+INSTALL_GH_CLI:
+    COMMAND
+    ENV GH_CLI_VERSION=latest
+    RUN \
+      curl -sL -o- https://github.com/cli/cli/releases/download/v2.35.0/gh_2.35.0_linux_amd64.tar.gz | \
+      tar -C /usr/local/bin/ -xz --strip-components 2 gh_2.35.0_linux_amd64/bin/gh && \
+      chmod +x /usr/local/bin/gh
+

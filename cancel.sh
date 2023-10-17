@@ -2,7 +2,7 @@
 
 set -e
 
-REPO="mritd/autobuild"
+REPO="mrjk/docker-images-autobuild"
 TOKEN="${GITHUB_TOKEN:-}"
 
 # Get all workflows in the repository

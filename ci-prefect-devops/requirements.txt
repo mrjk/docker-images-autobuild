@@ -1,0 +1,9 @@
+prefect>=2.12.0
+httpx
+ansible
+poetry
+sh
+#click
+#typer
+#box>=7.0.0
+

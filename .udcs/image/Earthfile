@@ -1,20 +1,29 @@
 VERSION 0.7
 
-ALPINE:
+ALPINE_3_18:
     COMMAND
-    FROM alpine
+    FROM alpine:3.18.3
+    # 3.18.3, 3.18, 3, latest
 
-DEBIAN:
+DEBIAN_12:
     COMMAND
-    FROM debian
+    FROM debian:bookworm-20230919
+    # bookworm, bookworm-20230919, 12.1, 12, latest
 
-DEBIAN_SLIM:
+DEBIAN_SLIM_12:
     COMMAND
-    FROM debian:stable-slim
+    FROM debian:bookworm-20230919-slim
+    # bookworm-slim, bookworm-20230919-slim, 12.1-slim, 12-slim
 
-UBUNTU:
+
+
+UBUNTU_22_04_LTS:
     COMMAND
-    FROM ubuntu
+    FROM ubuntu:jammy-20230816
+    # 22.04, jammy-20230816, jammy, latest
+
+
+#### FUTURE
 
 GOLANG:
     COMMAND

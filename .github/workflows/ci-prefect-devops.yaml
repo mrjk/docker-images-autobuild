@@ -1,8 +1,8 @@
-name: mritd/clash-meta
+name: mrjk78/ci-prefect-devops
 
 on:
   schedule:
-    - cron: 0 4 * * 1
+    - cron: 0 0 * * 1
   workflow_call:
   workflow_dispatch:
     inputs:
@@ -14,8 +14,8 @@ on:
           - build
 
 jobs:
-  clash-meta:
+  ci-prefect-devops:
     uses: ./.github/workflows/.earthly.yaml
     secrets: inherit
     with:
-      build-dir: clash-meta
+      build-dir: ci-prefect-devops

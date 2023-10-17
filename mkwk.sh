@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
+#
+# This scripts creates the required actions files for Github Actions
+#
 
-# 列出当前目录下的所有目录并将它们放入一个数组中
+DOCKERHUB_USER=${DOCKERHUB_USER}
+
+
+# List all directories
 directories=($(ls -d */ | sed 's#/##'))
 
-# 将 "alpine" 移动到数组首位
+# Push Alpine to the first
 alpine_index=$(echo "${directories[@]}" | tr ' ' '\n' | grep -n "alpine" | cut -d ":" -f 1)
 if [[ $alpine_index != 1 ]]; then
     tmp=${directories[0]}
@@ -18,8 +24,17 @@ month="*"
 day_of_week="1"
 
 for (( i=0; i<${#directories[@]}; i++ )); do
-    cat > .github/workflows/${directories[$i]}.yaml <<EOF
-name: mritd/${directories[$i]}
+  name=${directories[$i]}
+  dest=.github/workflows/${name}.yaml
+  conf=${name}/Earthfile
+    
+  [[ -f "$conf" ]] || continue
+  [[ "ci-prefect-devops" == "$name" ]] || continue
+
+
+  echo "INFO: Creates: $dest"
+  cat > $dest <<EOF
+name: $DOCKERHUB_USER/${directories[$i]}
 
 on:
   schedule:
