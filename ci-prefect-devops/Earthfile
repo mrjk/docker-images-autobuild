@@ -28,7 +28,8 @@ build:
     ARG IMAGE_NAME=ci-prefect-devops
     ARG IMAGE_BUILD_DAY=$(date +%y%m%d)
 
-    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}{IMAGE_NAME}:latest
+    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}${IMAGE_NAME}:latest
+    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}${IMAGE_NAME}:${IMAGE_BUILD_DAY}
 
 all:
     BUILD --platform=linux/amd64 +build
