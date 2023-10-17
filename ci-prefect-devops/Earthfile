@@ -22,11 +22,11 @@ build:
       
 
     # Must end with a / or empty
-    ARG registry_host=
+    ARG REGISTRY_HOST=
     # Must end with a / or empty
-    ARG registry_user=mrjk78/
+    ARG REGISTRY_USER=mrjk78/
 
-    SAVE IMAGE --push ${registry_host}${registry_user}ci-system:latest
+    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}ci-system:latest
 
 all:
     BUILD --platform=linux/amd64 +build
