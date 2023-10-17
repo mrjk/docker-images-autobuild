@@ -9,7 +9,9 @@ env:
   FORCE_COLOR: 1
   #DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   #DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  EARTHLY_ENV_FILE_PATH: ../env.sh
+  #EARTHLY_ENV_FILE_PATH: ../env.sh
+  REGISTRY_HOST: ""
+  REGISTRY_USER: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
   build:
@@ -48,4 +50,4 @@ jobs:
         sudo chmod +x /usr/local/bin/earthly
     - name: Earthly Build
       working-directory: ${{ inputs.build-dir }}
-      run: earthly --allow-privileged --push +all --IMAGE_NAME="$(basename $PWD)"
+      run: earthly --allow-privileged --push +all --IMAGE_NAME="$(basename $PWD)" --REGISTRY_USER=$REGISTRY_USER --REGISTRY_HOST=$REGISTRY_HOST

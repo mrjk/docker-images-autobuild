@@ -46,7 +46,7 @@ PKG_NETSHOOT:
     dhcping \
     drill \
     ethtool \
-    file\
+    file \
     fping \
     iftop \
     iperf \
