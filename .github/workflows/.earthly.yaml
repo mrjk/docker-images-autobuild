@@ -48,4 +48,4 @@ jobs:
         sudo chmod +x /usr/local/bin/earthly
     - name: Earthly Build
       working-directory: ${{ inputs.build-dir }}
-      run: earthly --allow-privileged --push --IMAGE_NAME="$(basename $PWD)" +all 
+      run: earthly --allow-privileged --push +all --IMAGE_NAME="$(basename $PWD)"
