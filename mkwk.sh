@@ -29,7 +29,7 @@ for (( i=0; i<${#directories[@]}; i++ )); do
   conf=${name}/Earthfile
     
   [[ -f "$conf" ]] || continue
-  [[ "ci-prefect-devops" == "$name" ]] || continue
+  [[ ":ci-prefect-devops:netshoot:" =~ .*":$name:".* ]] || continue
 
 
   echo "INFO: Creates: $dest"
