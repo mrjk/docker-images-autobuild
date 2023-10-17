@@ -24,12 +24,21 @@ build:
     # Must end with a / or empty
     ARG REGISTRY_HOST=
     # Must end with a / or empty
-    ARG REGISTRY_USER=mrjk78/
+    ARG REGISTRY_USER=mrjk78
     ARG IMAGE_NAME=ci-prefect-devops
     ARG IMAGE_BUILD_DAY=$(date +%y%m%d)
 
-    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}${IMAGE_NAME}:latest
-    SAVE IMAGE --push ${REGISTRY_HOST}${REGISTRY_USER}${IMAGE_NAME}:${IMAGE_BUILD_DAY}
+    IF [ "$REGISTRY_HOST" != "" ]
+      SAVE IMAGE --push ${REGISTRY_HOST}/${REGISTRY_USER}/${IMAGE_NAME}:latest
+      SAVE IMAGE --push ${REGISTRY_HOST}/${REGISTRY_USER}/${IMAGE_NAME}:${IMAGE_BUILD_DAY}
+    ELSE IF [ "$REGISTRY_USER" != "" ]
+      SAVE IMAGE --push ${REGISTRY_USER}/${IMAGE_NAME}:latest
+      SAVE IMAGE --push ${REGISTRY_USER}/${IMAGE_NAME}:${IMAGE_BUILD_DAY}
+    ELSE
+      SAVE IMAGE --push ${IMAGE_NAME}:latest
+      SAVE IMAGE --push ${IMAGE_NAME}:${IMAGE_BUILD_DAY}
+    END
+
 
 all:
     BUILD --platform=linux/amd64 +build
