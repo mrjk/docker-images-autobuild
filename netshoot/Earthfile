@@ -29,7 +29,7 @@ build:
     # Must end with a / or empty
     ARG REGISTRY_HOST=
     # Must end with a / or empty
-    ARG REGISTRY_USER=mrjk78/
+    ARG REGISTRY_USER=mrjk78
     ARG IMAGE_NAME=netshoot
     ARG IMAGE_BUILD_DAY=$(date +%y%m%d)
 
