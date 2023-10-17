@@ -24,7 +24,7 @@ build:
     # Must end with a / or empty
     ARG registry_host=
     # Must end with a / or empty
-    ARG registry_user=mrjk78
+    ARG registry_user=mrjk78/
 
     SAVE IMAGE --push ${registry_host}${registry_user}ci-system:latest
 
